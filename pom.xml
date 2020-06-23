@@ -1,0 +1,17 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.yyk</groupId>
+  <artifactId>hgshop-parent</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>hgshop</name>
+  <description>豪哥商城项目</description>
+  <modules>
+  	<module>hgshop-user-interface</module>
+  	<module>hgshop-goods-service</module>
+  	<module>hgshop-user-service</module>
+  	<module>hgshop-manager</module>
+  	<module>hgshop-web</module>
+  	<module>hgshop-goods-interface</module>
+  </modules>
+</project>
