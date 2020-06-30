@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yyk.dao.SpecDao">
+	
+	<!-- //添加规格
+	int addSpec(Spec spec); -->
+	<!-- <insert id="addSpec" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+		insert into(spec_name) values(#{specName})
+	</insert> -->
+	
+	
+	<!-- //删除规格子表
+	int delOptions(int... ids); -->
+	<!-- <delete id="delOptions">
+		delete from hg_spec_option where spec_id in 
+		<foreach collection="array"  open="(" close=")" separator="," item="id">
+			#{id}
+		</foreach>
+		
+	</delete> -->
+	
+	
+	<!-- //删除规格
+	int delSpec(int[] ids); -->
+	<!-- <delete id="delOptions">
+		delete from hg_spec where spec_id in 
+		<foreach collection="array"  open="(" close=")" separator="," item="id">
+			#{id}
+		</foreach>
+		
+	</delete> -->
+	
+	<!-- //修改规格
+	int update(Spec spec); -->
+	<!-- <update id="update">
+		update hg_spec set spec_name = #{specName}
+		where id=#{id}
+	</update> -->
+	
+	<!-- //添加规格子表
+	int addOption(Specoption specoption); -->
+	<!-- <insert id="addOption">
+		insert into hg_spec_option(option_name,spec_id,orders) values(#{optionName},#{specId},#{orders})
+	</insert> -->
+	
+	
+	
+	<resultMap type="spec" id="SpecMap">
+		<id column="id" property="id"/>
+		<collection property="options" column="id" select="queryOptions"></collection>
+	</resultMap>
+	
+	<select id="queryOptions" resultType="SpecOption">
+		SELECT * FROM hg_spec_option WHERE spec_id=#{value}
+	</select>
+	
+	
+	<!-- //查询规格
+	List<Spec> list(Spec spec); -->
+	<select id="list" resultMap="SpecMap">
+		select * from hg_spec 
+		<where>
+			<if test="specName!=null and specName=''">
+				 spec_name like concat('%',#{specName},'%')
+			</if>
+		</where>
+	</select>
+	
+	<!-- //根据id查规格修改回显
+	Spec findById(int id); -->
+	<select id="findById" resultMap="SpecMap">
+		select * from hg_spec where id=#{id}
+		
+	</select>
+	
+	<select id="listAll" resultType="spec">
+		SELECT * FROM hg_spec ORDER BY spec_name ASC
+	</select>
+	
+	
+</mapper>

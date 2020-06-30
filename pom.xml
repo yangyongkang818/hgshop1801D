@@ -1,21 +1,22 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.yyk</groupId>
-  <artifactId>hgshop-parent</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>pom</packaging>
-  <name>hgshop</name>
-  <description>豪哥商城项目</description>
-  <modules>
-  	<module>hgshop-user-interface</module>
-  	<module>hgshop-goods-service</module>
-  	<module>hgshop-user-service</module>
-  	<module>hgshop-manager</module>
-  	<module>hgshop-web</module>
-  	<module>hgshop-goods-interface</module>
-  </modules>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.yyk</groupId>
+	<artifactId>hgshop-parent</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>hgshop</name>
+	<description>豪哥商城项目</description>
+	<modules>
+		<module>hgshop-user-interface</module>
+		<module>hgshop-goods-service</module>
+		<module>hgshop-user-service</module>
+		<module>hgshop-manager</module>
+		<module>hgshop-web</module>
+		<module>hgshop-goods-interface</module>
+	</modules>
 
- <!-- 定义主要版本号 -->
+	<!-- 定义主要版本号 -->
 	<properties>
 		<spring.version>5.1.5.RELEASE</spring.version>
 		<mybatis.version>3.4.2</mybatis.version>
@@ -270,6 +271,17 @@
 				<groupId>org.springframework.kafka</groupId>
 				<artifactId>spring-kafka</artifactId>
 				<version>${spring-kafka.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-aspects</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-aop</artifactId>
+				<version>${spring.version}</version>
 			</dependency>
 
 		</dependencies>

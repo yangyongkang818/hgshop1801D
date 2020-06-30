@@ -19,6 +19,10 @@ public interface SpecDao {
 	//int update(Spec spec);
 	//查询规格
 	List<Spec> list(Spec spec);
+	
+	// 获取全部的规格
+	List<Spec> listAll();
+	
 	//根据id查规格修改回显
 	Spec findById(int id);
 
