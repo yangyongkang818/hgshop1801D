@@ -7,7 +7,10 @@
 		<id column="id" property="id"></id>
 		<association property="spu" column="spu_id" select="com.yyk.dao.SpuDao.findById"></association>
 	</resultMap>
-	
+	<!-- 继承即可 -->
+	<resultMap type="sku" id="SkuMapDetail" extends="SkuMap">
+		<collection property="options" column="id" select="com.yyk.dao.SpecDao.listOptionByskuId"></collection>
+	</resultMap>
 	
 	<!-- 	int insert(Sku sku); -->
 	<insert id="insert" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
@@ -55,6 +58,10 @@
 		WHERE id=#{id}
 	</update>
 	<!-- Sku findById(int id); -->
+	<select id="findById" resultMap="SkuMapDetail">
+		SELECT * FROM hg_sku WHERE id=#{value}
+	</select>
+	
 	<!-- List<Sku> list(SkuVo skuvo); -->
 	<select id="list" resultMap="SkuMap">
 		SELECT * FROM hg_sku

@@ -63,6 +63,8 @@ public class SkuController {
 		return "sku/add";
 	}
 	
+	
+	
 	/**
 	 * 添加sku
 	 * */
@@ -97,6 +99,57 @@ public class SkuController {
 		if(spec==null)
 			return null;
 		return spec.getOptions();
+	}
+	
+	
+	/**
+	 * 去修改
+	 * */
+	@RequestMapping("toUpdate")
+	public String toUpdate(Model m,int id) {
+
+		Sku sku = skuService.getById(id);
+		m.addAttribute("sku", sku);
+		
+		//获取规格
+		List<Spec> specList = specService.listAll();
+		m.addAttribute("specList", specList);
+
+		return "sku/update";
+	}
+	
+	/**
+	 * 修改sku
+	 * */
+	@RequestMapping("update")
+	@ResponseBody
+	public boolean update(Model m,Sku sku,
+			@RequestParam("imageFile") MultipartFile imageFile,
+			@RequestParam("cartThumbnailFile") MultipartFile cartThumbnailFile ) {
+		List<SpecOption> list = sku.getOptions();
+		//数据清零一下
+		 for (int i = list.size()-1; i >=0; i--) {
+			SpecOption option = list.get(i);
+			if(null == option.getSpecId() || 0==option.getSpecId()) {
+				list.remove(i);
+			}
+		}
+		// 处理图片
+		 sku.setImage(fileUtils.upload(imageFile)); 
+		 sku.setCartThumbnail(fileUtils.upload(cartThumbnailFile)); 
+
+		return skuService.update(sku)>0;
+	}
+	
+	/**
+	 * 删除
+	 * */
+	@RequestMapping("del")
+	@ResponseBody
+	public String del(Model m,@RequestParam("ids[]") int[] ids) {
+
+		return skuService.delete(ids)>0?"ok":"failed";
+
 	}
 	
 }
